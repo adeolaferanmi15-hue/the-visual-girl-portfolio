@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Visual Girl — AI Creative Studio</title>
+<meta name="description" content="The Visual Girl — AI video, motion adverts, animation, product visuals and creative storytelling by Adeola.">
+<link rel="icon" href="mark.svg">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Sora:wght@400;500;600;700&display=swap');
+:root{
+ --ink:#171513;--paper:#e9e4dc;--cream:#dcd4c8;--muted:#403b35;--line:rgba(23,21,19,.16);
+ --accent:#66735f;--white:#f7f3ed;--max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{max-width:100%}
+
+.intro-overlay{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--paper);display:grid;place-items:center;transition:opacity .8s ease,visibility .8s ease}
+.intro-overlay.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-inner{width:min(900px,84vw);text-align:center}
+.intro-brand{font-family:"Sora",Arial,sans-serif;font-size:clamp(34px,7vw,88px);font-weight:600;letter-spacing:.12em;line-height:1;overflow:hidden}
+.intro-brand span{display:inline-block;opacity:0;transform:translateY(110%);animation:brandIn .75s cubic-bezier(.2,.8,.2,1) forwards}
+.intro-brand span:nth-child(1){animation-delay:.05s}.intro-brand span:nth-child(2){animation-delay:.09s}.intro-brand span:nth-child(3){animation-delay:.13s}.intro-brand span:nth-child(4){animation-delay:.17s}.intro-brand span:nth-child(5){animation-delay:.21s}.intro-brand span:nth-child(6){animation-delay:.25s}.intro-brand span:nth-child(7){animation-delay:.29s}.intro-brand span:nth-child(8){animation-delay:.33s}.intro-brand span:nth-child(9){animation-delay:.37s}.intro-brand span:nth-child(10){animation-delay:.41s}.intro-brand span:nth-child(11){animation-delay:.45s}.intro-brand span:nth-child(12){animation-delay:.49s}.intro-brand span:nth-child(13){animation-delay:.53s}.intro-brand span:nth-child(14){animation-delay:.57s}
+.intro-line{width:0;height:1px;background:rgba(244,228,220,.5);margin:22px auto 14px;animation:lineIn .7s .65s ease forwards}
+.intro-sub{font-family:"Sora",Arial,sans-serif;font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:0;animation:fadeIn .7s .8s ease forwards}
+@keyframes brandIn{to{opacity:1;transform:none}}
+@keyframes lineIn{to{width:min(300px,60vw)}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+.wrap{width:min(var(--max),91vw);margin:auto}
+.cursor{position:fixed;z-index:50;width:14px;height:14px;border:1px solid var(--ink);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,background .25s;mix-blend-mode:multiply}
+.cursor.big{width:58px;height:58px;background:var(--ink);border-color:var(--ink)}
+.topbar{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);position:relative;z-index:5}
+.brand{font-family:"Sora",Arial,sans-serif;font-weight:600;letter-spacing:.12em;font-size:14px}
+.nav{display:flex;gap:28px;font-size:12px;color:var(--muted)}
+.nav a{position:relative}.nav a:after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--ink);transition:.3s}.nav a:hover:after{width:100%}
+.hero{min-height:calc(100vh - 78px);display:grid;grid-template-columns:1.1fr .9fr;gap:6vw;align-items:center;padding:70px 0 90px}
+.hero-copy{position:relative;z-index:2}
+.eyebrow{text-transform:uppercase;letter-spacing:.2em;font-family:"Sora",Arial,sans-serif;font-size:12px;font-weight:600;color:var(--accent)}
+.hero h1{font-family:"Sora",Arial,sans-serif;font-weight:500;font-size:clamp(64px,8.5vw,130px);line-height:.88;letter-spacing:-.055em;margin:18px 0 30px}
+.hero h1 em{font-weight:500}
+.hero .intro{font-family:"Lora",Georgia,serif;font-size:19px;color:var(--muted);max-width:580px;line-height:1.65}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;padding:12px 18px;border:1px solid var(--ink);border-radius:100px;font-size:12px;font-weight:700;transition:transform .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-3px);background:var(--ink);color:var(--white)}
+.hero-photo{position:relative;justify-self:end;width:min(430px,100%);animation:rise 1s ease both}
+.hero-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:18px 18px 0 var(--cream)}
+.photo-note{position:absolute;left:-42px;bottom:28px;writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:.2em;font-size:9px;color:var(--muted)}
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:55px;padding:16px 0;animation:marquee 22s linear infinite;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--muted)}
+.marquee-track b{color:var(--accent);font-family:"Sora",Arial,sans-serif;font-weight:500}
+.section{padding:110px 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;margin-bottom:50px}
+.section-head h2{font-family:"Sora",Arial,sans-serif;font-weight:500;font-size:clamp(45px,5.5vw,80px);line-height:.94;letter-spacing:-.045em;margin:0}
+.section-head p{font-family:"Lora",Georgia,serif;color:var(--muted);max-width:570px;margin:4px 0 0;font-size:17px;line-height:1.65}
+.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+.project{grid-column:span 6;position:relative;background:var(--white);border:1px solid var(--line);overflow:hidden}
+.project.featured{grid-column:span 8}.project.small{grid-column:span 4}
+.project-media{position:relative;overflow:hidden;background:#ddd4ca}
+.project video{width:100%;aspect-ratio:16/10;display:block;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1);background:#0c0c0c}
+.project:hover video{transform:scale(1.045)}
+.project-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.58),transparent 45%);opacity:0;transition:.35s;display:flex;align-items:flex-end;justify-content:space-between;padding:20px;color:#fff}
+.project:hover .project-overlay{opacity:1}
+.play{width:42px;height:42px;border:1px solid rgba(255,255,255,.8);border-radius:50%;display:grid;place-items:center;font-size:12px}
+.project-body{padding:21px 21px 24px}.tag{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);font-weight:700}
+.project h3{font-family:"Sora",Arial,sans-serif;font-size:30px;line-height:1.05;font-weight:500;margin:9px 0 8px}
+.project p{font-family:"Lora",Georgia,serif;font-size:15px;color:var(--muted);margin:0;line-height:1.6}
+.services{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.service{padding:28px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:190px;transition:background .3s,transform .3s}
+.service:hover{background:var(--white);transform:translateY(-4px)}
+.service .num{font-size:10px;color:var(--accent);letter-spacing:.14em}
+.service h3{font-family:"Sora",Arial,sans-serif;font-size:26px;font-weight:500;margin:28px 0 8px}.service p{font-family:"Lora",Georgia,serif;font-size:14px;color:var(--muted);margin:0;line-height:1.6}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.step{padding:30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:210px}
+.step b{font-family:"Sora",Arial,sans-serif;font-size:11px;letter-spacing:.16em;color:var(--accent)}.step h3{font-family:"Sora",Arial,sans-serif;font-weight:500;font-size:28px;margin:35px 0 8px}.step p{font-family:"Lora",Georgia,serif;color:var(--muted);font-size:14px;line-height:1.6}
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:90px;align-items:start}.about-photo img{width:100%;max-width:360px;aspect-ratio:1/1.15;object-fit:cover}
+.about-copy h2{font-family:"Sora",Arial,sans-serif;font-size:clamp(44px,5vw,72px);font-weight:500;line-height:.95;letter-spacing:-.045em;margin:0 0 25px}
+.about-copy p{font-family:"Lora",Georgia,serif;color:var(--muted);font-size:17px;max-width:650px;line-height:1.7}.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.pill{border:1px solid var(--line);padding:8px 12px;border-radius:100px;font-size:11px;color:var(--muted)}
+.contact{padding:70px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:end}.contact h2{font-family:"Sora",Arial,sans-serif;font-size:clamp(54px,7vw,102px);font-weight:500;line-height:.88;letter-spacing:-.055em;margin:12px 0 0}.contact p{font-family:"Lora",Georgia,serif;color:var(--muted);font-size:17px;line-height:1.65;max-width:450px}.contact-links{display:flex;flex-direction:column;align-items:flex-start;gap:13px}.contact-links a{font-family:"Sora",Arial,sans-serif;font-size:30px;border-bottom:1px solid var(--line);padding-bottom:7px;transition:padding-left .3s}.contact-links a:hover{padding-left:12px}
+footer{padding:26px 0 42px;display:flex;justify-content:space-between;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
+@keyframes rise{from{opacity:0;transform:translateY(35px)}to{opacity:1;transform:none}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:900px){
+ .hero,.about,.contact,.section-head{grid-template-columns:1fr}.hero{min-height:auto;padding:65px 0 80px}.hero-photo{justify-self:start;width:min(520px,100%);margin-top:20px}.photo-note{left:auto;right:-28px}
+ .services{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.project,.project.featured,.project.small{grid-column:span 6}.about-photo{order:2}
+}
+@media(max-width:600px){
+ .nav{display:none}
+ .topbar{height:68px}
+ .brand{font-size:12px;letter-spacing:.1em}
+ .hero{padding:48px 0 64px;gap:34px}
+ .hero h1{font-size:clamp(48px,15.2vw,62px);line-height:.9;letter-spacing:-.05em;margin:14px 0 22px;overflow-wrap:anywhere}
+ .hero .intro{font-size:18px;line-height:1.58}
+ .eyebrow{font-size:10px;letter-spacing:.16em}
+ .ctas{gap:10px;margin-top:24px}
+ .btn{padding:11px 15px;font-size:11px}
+ .hero-photo{width:calc(100% - 14px);margin-top:6px}
+ .hero-photo img{box-shadow:12px 12px 0 var(--cream)}
+ .photo-note{right:-22px;bottom:18px;font-size:8px}
+ .section{padding:72px 0}
+ .section-head{gap:18px;margin-bottom:34px}
+ .section-head h2{font-size:clamp(40px,12.5vw,58px);line-height:.94}
+ .section-head p{font-size:18px;line-height:1.6}
+ .work-grid{gap:16px}
+ .project,.project.featured,.project.small{grid-column:span 12}
+ .project-body{padding:18px 18px 21px}
+ .project h3{font-size:27px}
+ .project p{font-size:16px;line-height:1.58}
+ .services,.process{grid-template-columns:1fr}
+ .service{padding:24px;min-height:0}
+ .service h3{font-size:25px;margin:22px 0 7px}
+ .service p,.step p{font-size:16px;line-height:1.58}
+ .step{padding:24px;min-height:0}
+ .step h3{font-size:27px;margin:24px 0 7px}
+ .about{gap:42px}
+ .about-copy h2{font-size:clamp(40px,12vw,58px);line-height:.96}
+ .about-copy p{font-size:18px;line-height:1.65}
+ .contact{padding:58px 0;gap:40px}
+ .contact h2{font-size:clamp(48px,14vw,68px);line-height:.9}
+ .contact p{font-size:18px;line-height:1.6}
+ .contact-links a{font-size:23px}
+ footer{flex-direction:column;gap:10px;font-size:9px}
+ .intro-inner{width:92vw}
+ .intro-brand{font-size:clamp(28px,8.8vw,52px);letter-spacing:.07em;white-space:nowrap}
+ .intro-sub{font-size:9px;letter-spacing:.2em}
+ .intro-line{margin:18px auto 12px}
+ .cursor{display:none}
+}
+@media(max-width:380px){
+ .wrap{width:90vw}
+ .hero h1{font-size:46px}
+ .section-head h2,.about-copy h2{font-size:39px}
+ .contact h2{font-size:45px}
+ .intro-brand{font-size:25px;letter-spacing:.045em}
+ .intro-sub{font-size:8px;letter-spacing:.15em}
+ .contact-links a{font-size:21px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.marquee-track,.hero-photo,.intro-brand span,.intro-line,.intro-sub{animation:none}.intro-overlay{transition:none}.intro-brand span{opacity:1;transform:none}.intro-line{width:min(300px,60vw)}.intro-sub{opacity:1}.reveal{transition:none}.project video,.service{transition:none}}
+</style>
+</head>
+<body>
+<div class="intro-overlay" id="introOverlay" aria-hidden="true"><div class="intro-inner"><div class="intro-brand"><span>T</span><span>H</span><span>E</span><span> </span><span>V</span><span>I</span><span>S</span><span>U</span><span>A</span><span>L</span><span> </span><span>G</span><span>I</span><span>R</span><span>L</span></div><div class="intro-line"></div><div class="intro-sub">AI Creative Studio · Adeola</div></div></div>
+<div class="cursor" id="cursor"></div>
+<div class="wrap">
+<header class="topbar">
+ <a class="brand" href="#">THE VISUAL GIRL</a>
+ <nav class="nav"><a href="#work">Work</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+</header>
+
+<main>
+<section class="hero">
+ <div class="hero-copy">
+  <div class="eyebrow">AI Creative Studio · Adeola</div>
+  <h1>Ideas into<br><em>visuals</em> that move.</h1>
+  <p class="intro">I create AI-powered video, animation, motion adverts and product visuals for brands, creators and businesses that want their ideas to be seen — and remembered.</p>
+  <div class="ctas"><a class="btn" href="#work">Explore my work ↓</a><a class="btn" href="https://wa.me/2348168038630" target="_blank" rel="noopener">Start a project</a></div>
+ </div>
+ <div class="hero-photo"><img src="adeola.jpg" alt="Adeola, The Visual Girl"><div class="photo-note">AI · Motion · Visual Storytelling</div></div>
+</section>
+
+<div class="marquee"><div class="marquee-track">
+ <span>AI Video</span><b>·</b><span>Motion Adverts</span><b>·</b><span>Product Visuals</span><b>·</b><span>Animation</span><b>·</b><span>Creative Storytelling</span><b>·</b>
+ <span>AI Video</span><b>·</b><span>Motion Adverts</span><b>·</b><span>Product Visuals</span><b>·</b><span>Animation</span><b>·</b><span>Creative Storytelling</span><b>·</b>
+</div></div>
+
+<section class="section" id="work">
+ <div class="section-head reveal"><div><div class="eyebrow">01 · Selected Work</div><h2>Work that speaks before I do.</h2></div><p>A growing collection of AI-powered visual projects. From brand promos and motion adverts to product storytelling and animation.</p></div>
+ <div class="work-grid">
+  <article class="project featured reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-willsrecord.jpg" src="willsrecord.mp4"></video><div class="project-overlay"><span>Brand / AI Video</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">Brand / AI Video</div><h3>WillsRecord — Music Platform Promo</h3><p>Concept-led promotional content combining product messaging, visual storytelling and cinematic presentation.</p></div></article>
+  <article class="project small reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-lipgloss.jpg" src="lip-gloss-motion-ad.mp4"></video><div class="project-overlay"><span>Motion Advert</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">Motion Advert</div><h3>Lip Gloss — Product Ad</h3><p>A beauty-focused motion concept designed for social and promotional use.</p></div></article>
+  <article class="project small reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-product.jpg" src="product-visuals.mp4"></video><div class="project-overlay"><span>Product Visuals</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">AI Product Photography</div><h3>Product Visual Campaign</h3><p>Polished product-focused visuals for modern digital campaigns.</p></div></article>
+  <article class="project small reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-ugc.jpg" src="product-ugc.mp4"></video><div class="project-overlay"><span>AI UGC</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">AI UGC / Social</div><h3>Product Storytelling Ad</h3><p>Human-led promotional content built for social-first communication.</p></div></article>
+  <article class="project featured reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-motion.jpg" src="educational-motion.mp4"></video><div class="project-overlay"><span>Motion Content</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">Motion Content</div><h3>Educational Motion Content</h3><p>Visual storytelling that turns information into engaging digital content.</p></div></article>
+  <article class="project small reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-digital.jpg" src="digital-product-ad.mp4"></video><div class="project-overlay"><span>Digital Product</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">Digital Product</div><h3>Digital Product Promotion</h3><p>A promotional concept using scenes, messaging and visual narrative.</p></div></article>
+  <article class="project small reveal"><div class="project-media"><video controls playsinline preload="metadata" poster="thumb-kids.jpg" src="kids-ai-animation.mp4"></video><div class="project-overlay"><span>AI Animation</span><span class="play">▶</span></div></div><div class="project-body"><div class="tag">AI Animation</div><h3>Children's AI Animation</h3><p>Character-led storytelling for children's entertainment and educational content.</p></div></article>
+ </div>
+</section>
+
+<section class="section" id="services">
+ <div class="section-head reveal"><div><div class="eyebrow">02 · Capabilities</div><h2>What I create.</h2></div><p>Creative production built around the message, audience and platform — not just the tool.</p></div>
+ <div class="services reveal">
+  <div class="service"><div class="num">01</div><h3>AI Video</h3><p>Promotional, cinematic and short-form AI video content.</p></div>
+  <div class="service"><div class="num">02</div><h3>Motion Adverts</h3><p>Animated product promos, social ads and campaign content.</p></div>
+  <div class="service"><div class="num">03</div><h3>AI Animation</h3><p>Character-led animation and narrative visual content.</p></div>
+  <div class="service"><div class="num">04</div><h3>Product Visuals</h3><p>AI product photography and lifestyle campaign imagery.</p></div>
+  <div class="service"><div class="num">05</div><h3>Video Editing</h3><p>Pacing, transitions, captions and final creative polish.</p></div>
+  <div class="service"><div class="num">06</div><h3>AI UGC</h3><p>Social-first product and creator-style promotional content.</p></div>
+  <div class="service"><div class="num">07</div><h3>Creative Concepts</h3><p>Turning a brief into a visual direction and content concept.</p></div>
+  <div class="service"><div class="num">08</div><h3>Storytelling</h3><p>Scripts, scenes and visual sequences with a clear narrative.</p></div>
+ </div>
+</section>
+
+<section class="section">
+ <div class="section-head reveal"><div><div class="eyebrow">03 · My Process</div><h2>From a blank page to a final cut.</h2></div><p>AI accelerates production. Creative direction, storytelling and editing bring the pieces together.</p></div>
+ <div class="process reveal">
+  <div class="step"><b>01 — CONCEPT</b><h3>Think.</h3><p>Understand the brief, audience, objective and visual direction.</p></div>
+  <div class="step"><b>02 — CREATE</b><h3>Generate.</h3><p>Develop scenes, images, characters and motion using AI tools.</p></div>
+  <div class="step"><b>03 — EDIT</b><h3>Shape.</h3><p>Sequence visuals, refine pacing and add sound, text and transitions.</p></div>
+  <div class="step"><b>04 — DELIVER</b><h3>Move.</h3><p>Export polished, platform-ready content that serves the idea.</p></div>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="about">
+  <div class="about-photo reveal"><img src="adeola.jpg" alt="Adeola — The Visual Girl"></div>
+  <div class="about-copy reveal"><div class="eyebrow">04 · About</div><h2>Creative technology, with a human point of view.</h2>
+   <p>I'm Adeola — The Visual Girl. I use emerging creative technology to turn ideas into engaging visual experiences.</p>
+   <p>My work sits at the intersection of AI generation, animation, motion design, product visuals, video editing and storytelling. I'm open to remote roles, freelance projects and creative collaborations with brands, agencies, startups and creators.</p>
+   <div class="pills"><span class="pill">AI Video</span><span class="pill">Animation</span><span class="pill">Motion Ads</span><span class="pill">Product Visuals</span><span class="pill">Video Editing</span><span class="pill">AI UGC</span><span class="pill">Prompting</span><span class="pill">Storytelling</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="contact">
+  <div class="reveal"><div class="eyebrow">05 · Let's create</div><h2>Have an idea worth seeing?</h2><p>I'm available for remote creative opportunities, freelance projects and collaborations.</p></div>
+  <div class="contact-links reveal">
+   <a href="https://wa.me/2348168038630" target="_blank" rel="noopener">WhatsApp ↗</a>
+   <a href="tel:+2348168038630">+234 816 803 8630</a>
+   <a href="https://www.instagram.com/_thevisualgirl/" target="_blank" rel="noopener">Instagram ↗</a>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><span>© 2026 The Visual Girl · Adeola</span><span>AI · Motion · Visuals</span></footer>
+</div>
+<script>
+const intro=document.getElementById('introOverlay');
+window.addEventListener('load',()=>{setTimeout(()=>intro.classList.add('hide'),1900)});
+const cursor=document.getElementById('cursor');
+window.addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+document.querySelectorAll('a,.project,.service').forEach(el=>{
+ el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+ el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+});
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,21 +1,27 @@
-THE VISUAL GIRL — AI CREATIVE PORTFOLIO V4
+THE VISUAL GIRL — FINAL PORTFOLIO
 
-This is a static portfolio website for The Visual Girl (Adeola).
+Upload index.html and the assets folder to the root of your GitHub repository.
 
-V4 design updates:
-- Warmer, richer paper background instead of near-white
-- Replaced the previous gold accent with a sophisticated muted olive
-- Updated heading/label typography to Sora and increased heading sizes by about 2px
-- Added a short opening reveal: THE VISUAL GIRL animates in before the portfolio appears
-- Added animated brand lettering on the opening screen
-- Removed all star symbols/elements; marquee uses minimal dot separators
-- Retained responsive layout, project videos, portrait, WhatsApp, phone and Instagram links
+Categories:
+- Product Photography
+- Social Content
+- Advertising / UGC — 3 videos only
+- Campaigns — The Length Co. campaign visuals + campaign video
+- Brand Identity
 
-Files:
-- index.html
-- adeola.jpg
-- mark.svg
-- 7 project MP4 videos
-- poster thumbnails
+Pricing:
+- Content Starter — ₦20,000
+- Content Growth — ₦35,000
+- Brand Visual Kit — ₦60,000
+- Campaign Creation — From ₦75,000
 
-To publish: upload the contents of this folder to GitHub Pages, Netlify, Vercel, or another static hosting service.
+Campaign positioning:
+The Length Co. — Length Retention Campaign
+Objective: Build brand awareness.
+Campaign idea: “Your hair is growing. Now take care of the length.”
+Role: AI Visual Creation.
+
+Contact:
+Instagram: https://www.instagram.com/_thevisualgirl/
+WhatsApp: https://wa.me/2348168038630
+Email: adeolaferanmi15@gmail.com

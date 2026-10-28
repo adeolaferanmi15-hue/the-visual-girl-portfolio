@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE VISUAL GIRL — International Portfolio</title>
+<meta name="description" content="THE VISUAL GIRL creates product photography, social content, advertising, campaigns and brand identity visuals for modern brands.">
+<style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fbfaf7}iframe{display:block;width:100%;height:100%;border:0}</style>
+</head>
+<body>
+<iframe id="portfolio" src="../index.html" title="THE VISUAL GIRL — International Portfolio"></iframe>
+<script>
+const prices={
+  '₦20,000':'$75',
+  '₦35,000':'$125',
+  '₦60,000':'$200',
+  'From ₦75,000':'From $300'
+};
+function updateInternationalPrices(){
+  const frame=document.getElementById('portfolio');
+  try{
+    const doc=frame.contentDocument;
+    if(!doc) return;
+    const walker=doc.createTreeWalker(doc.body,NodeFilter.SHOW_TEXT);
+    const nodes=[];
+    while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node=>{
+      let text=node.nodeValue;
+      Object.entries(prices).forEach(([from,to])=>{text=text.split(from).join(to)});
+      node.nodeValue=text;
+    });
+    const title=doc.querySelector('title');
+    if(title) title.textContent='THE VISUAL GIRL — International Portfolio';
+    const desc=doc.querySelector('meta[name="description"]');
+    if(desc) desc.setAttribute('content','THE VISUAL GIRL — International portfolio for product visuals, social content, advertising, campaigns and brand identity.');
+  }catch(e){}
+}
+document.getElementById('portfolio').addEventListener('load',()=>{
+  updateInternationalPrices();
+  setTimeout(updateInternationalPrices,300);
+  setTimeout(updateInternationalPrices,1000);
+});
+</script>
+</body>
+</html>
